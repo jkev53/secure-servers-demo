@@ -42,8 +42,8 @@ vault_mlock_grant:
   pkg.installed:
     - name: libcap2-bin
   cmd.run:
-    - name: 'sudo setcap cap_ipc_lock=+ep /usr/local/bin/vault'
-    - unless: 'sudo systemctl status vault > /dev/null'
+    - name: 'setcap cap_ipc_lock=+ep /usr/local/bin/vault'
+    - unless: 'systemctl status vault > /dev/null'
     - require:
         - pkg: vault_mlock_grant
 
